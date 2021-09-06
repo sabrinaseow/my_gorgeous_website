@@ -1,3 +1,3 @@
-# my_gorgeous_website
+# my_website
 
 Hello world
