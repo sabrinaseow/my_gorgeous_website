@@ -1,3 +1,3 @@
 # my_website
 
-Hello world!
+Hello
