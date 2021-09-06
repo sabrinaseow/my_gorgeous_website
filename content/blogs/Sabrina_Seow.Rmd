@@ -1,13 +1,17 @@
 ---
-title: 'MAM 2022 Pre-programme Assignment'
-author: "Sabrina Seow"
-date: "23-08-2021"
-output:
-  html_document:
-    theme: flatly
-    highlight: zenburn
-    toc: yes
-    toc_float: yes
+categories:
+- ""
+- ""
+date: "2017-10-31T22:42:51-05:00"
+description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
+  sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa
+  sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem
+  consequat tincidunt. Vivamus et sagittis tempus.
+draft: false
+image: pic07.jpg
+keywords: ""
+slug: sabrinaseow
+title: Aliquam
 ---
 
 ```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
