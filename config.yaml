@@ -81,9 +81,9 @@ params:
   tiles:
     enable: yes
     showcase:
-      - image: pic01.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Aliquam
+      - image: pic01.jpg 
+        subtitle: Ipsum Dolor Sit Amet 
+        title: About Me
         url: blogs/sabrinaseow
       - image: pic02.jpg
         subtitle: Feugiat Amet Tempus
