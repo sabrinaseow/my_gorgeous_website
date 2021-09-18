@@ -25,7 +25,13 @@ The goal is to test your software installation, to demonstrate competency in Mar
 
 # Task 1: Short biography written using markdown
 ## Hi, I'm **Sabrina Seow**
-![A hot pic of me x](BRINE.png)
+
+```{r picture 1, echo=FALSE, out.width="100%"}
+knitr::include_graphics("/img/BRINE.png", error = FALSE)
+
+```
+
+![](BRINE.png)
 
 ### About me
 I'm a Malaysian and I graduated from The University of Manchester back in 2019 with a degree in Information Technology Management for Business. Post-graduation, I landed myself a job as an Associate Consultant in Ernst & Young Malaysia and I was there until just about a few months ago, where I quitted and decided to further my studies. Though my bachelors degree might sound very technical, I actually have only very little experience in coding. Hence, I look forward to upskilling myself and gain the technical capabilities I lack. 
