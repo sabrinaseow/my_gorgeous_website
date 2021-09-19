@@ -60,7 +60,7 @@ params:
   name: Sabrina Seow
   navigation:
     button1:
-      - name: View My Projects
+      - name: View All
         url: blogs
     # button2:
     #   - name: Log In
@@ -68,9 +68,9 @@ params:
     links:
       - name: Home
         url: '#'
-      - name: About
+      - name: WHO
         url: blogs/sabrinaseow
-      - name: Generic Blog
+      - name: WORK
         url: blogs/ipsum
       # - name: Elements
       #   url: elements.html
@@ -80,7 +80,7 @@ params:
   tiles:
     enable: yes
     showcase:
-      - image: sabs1_.jpg 
+      - image: sabs01.png 
         # subtitle: Ipsum Dolor Sit Amet 
         title: About Me
         url: blogs/sabrinaseow
