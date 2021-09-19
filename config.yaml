@@ -1,15 +1,14 @@
 baseURL: https://sabrina-seow-portfolio.netlify.app/
 languageCode: en-us
-title: Sabrina Seow
+title: Hey, I'm Sabrina. 
 theme: forty
 googleAnalytics: ''
 disqusShortname: ''
 params:
   banner:
-    buttonText: Get Started
+    buttonText: Learn More
     subtitle: |-
-      A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
-      AND RELEASED UNDER THE CREATIVE COMMONS.
+      Welcome to my portfolio website.  
     title: Sabrina Seow
   blog: {}
   contact:
@@ -25,7 +24,7 @@ params:
         title: Email
     enable: yes
     phone:
-      - phone: (+44) 07949541161
+      - phone: (+44) 07878928726
         title: Phone
   custom_css: []
   custom_js: []
@@ -76,8 +75,8 @@ params:
       - name: Elements
         url: elements.html
     menu: Menu
-    subtitle: By HTML5 Up
-    title: Forty
+    # subtitle: By HTML5 Up
+    title: Home
   tiles:
     enable: yes
     showcase:
