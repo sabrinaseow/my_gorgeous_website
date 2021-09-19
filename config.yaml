@@ -1,6 +1,6 @@
 baseURL: https://sabrina-seow-portfolio.netlify.app/
 languageCode: en-us
-title: Hey, I'm Sabrina. 
+title: Sabrina Seow
 theme: forty
 googleAnalytics: ''
 disqusShortname: ''
@@ -9,7 +9,7 @@ params:
     buttonText: Learn More
     subtitle: |-
       Welcome to my portfolio website.  
-    title: Sabrina Seow
+    title: Hey, I'm Sabrina.
   blog: {}
   contact:
     address:
@@ -57,53 +57,53 @@ params:
         label: LinkedIn
         url: https://www.linkedin.com/in/sabrinaseow
   image: ''
-  name: Your name
+  name: Sabrina Seow
   navigation:
     button1:
-      - name: Get Started
+      - name: View My Projects
         url: blogs
-    button2:
-      - name: Log In
-        url: '#'
+    # button2:
+    #   - name: Log In
+    #     url: '#'
     links:
       - name: Home
         url: '#'
-      - name: Blogs
-        url: blogs
+      - name: About
+        url: blogs/sabrinaseow
       - name: Generic Blog
         url: blogs/ipsum
-      - name: Elements
-        url: elements.html
+      # - name: Elements
+      #   url: elements.html
     menu: Menu
     # subtitle: By HTML5 Up
     title: Home
   tiles:
     enable: yes
     showcase:
-      - image: pic01.jpg 
-        subtitle: Ipsum Dolor Sit Amet 
+      - image: sabs1_.jpg 
+        # subtitle: Ipsum Dolor Sit Amet 
         title: About Me
         url: blogs/sabrinaseow
       - image: pic02.jpg
         subtitle: Feugiat Amet Tempus
         title: Tempus
         url: blogs/tempus
-      - image: pic03.jpg
-        subtitle: Lorem Etiam Nullam
-        title: Magna
-        url: blogs/magna
-      - image: pic04.jpg
-        subtitle: Nisl Sed Aliquam
-        title: Ipsum
-        url: blogs/ipsum
-      - image: pic05.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Consequat
-        url: blogs/ipsum
-      - image: pic06.jpg
-        subtitle: Feugiat Amet Tempus
-        title: Etiam
-        url: blogs/ipsum
+      # - image: pic03.jpg
+      #   subtitle: Lorem Etiam Nullam
+      #   title: Magna
+      #   url: blogs/magna
+      # - image: pic04.jpg
+      #   subtitle: Nisl Sed Aliquam
+      #   title: Ipsum
+      #   url: blogs/ipsum
+      # - image: pic05.jpg
+      #   subtitle: Ipsum Dolor Sit Amet
+      #   title: Consequat
+      #   url: blogs/ipsum
+      # - image: pic06.jpg
+      #   subtitle: Feugiat Amet Tempus
+      #   title: Etiam
+      #   url: blogs/ipsum
   two:
     buttonText: Download PDF
     enable: yes
