@@ -26,7 +26,7 @@ The goal is to test your software installation, to demonstrate competency in Mar
 # Task 1: Short biography written using markdown
 ## Hi, I'm **Sabrina Seow**
 
-```{r picture 1, echo=FALSE, out.width="100%"}
+```{r picture 1, echo=FALSE, out.width="50%"}
 knitr::include_graphics("/img/sabrina.jpg", error = FALSE)
 
 ```
