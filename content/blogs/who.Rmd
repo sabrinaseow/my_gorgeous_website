@@ -1,0 +1,38 @@
+---
+categories:
+- ""
+- ""
+date: "2017-10-31T22:42:51-05:00"
+description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
+  sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa
+  sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem
+  consequat tincidunt. Vivamus et sagittis tempus.
+draft: false
+# image: pic07.jpg
+keywords: ""
+slug: sabrinaseow
+title: About Me
+---
+
+
+```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(gapminder)  # gapminder dataset
+library(here)
+library(janitor)
+```
+
+```{r picture 1, echo=FALSE, out.width="50%"}
+knitr::include_graphics("/img/blogs/sabrina.jpg", error = FALSE)
+
+```
+
+### About me
+I'm a Malaysian and I graduated from The University of Manchester back in 2019 with a degree in Information Technology Management for Business. Post-graduation, I landed myself a job as an Associate Consultant in Ernst & Young Malaysia and I was there until just about a few months ago, where I quitted and decided to further my studies. Though my bachelors degree might sound very technical, I actually have only very little experience in coding. Hence, I look forward to upskilling myself and gain the technical capabilities I lack. 
+
+**Random facts about me**:
+
+* I speak four languages - *English*, *Mandarin*, *Cantonese* & *Malay*
+* I am the youngest in the family. I have two older brothers 
+* I used to not exercise at all but ever since I was introduced to indoor cycling, my lifestyle have changed completely
+* I can't live without coffee 
