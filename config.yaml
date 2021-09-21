@@ -95,7 +95,7 @@ params:
       - image: movies.jpg
         subtitle: Analysing a subset sample of movies taken from the Kaggle IMDb 5000 movie dataset
         title: IMDb Movie Database Analysis
-      #   url: blogs/imdb
+        url: blogs/imdb
       # - image: pic05.jpg
       #   subtitle: Ipsum Dolor Sit Amet
       #   title: Consequat
