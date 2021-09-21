@@ -20,7 +20,7 @@ library(janitor)
 
 This report provides some insights into the dynamics of the 2016 Brexit vote in the UK.
 
-## Import and Inspect 
+## Import and Inspect
 
 ```{r load_brexit_data, warning=FALSE, message=FALSE}
 brexit_results <- read_csv(here::here("data","brexit_results.csv"))
