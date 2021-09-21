@@ -11,8 +11,7 @@ slug: paydiscrimination
 title: Omega Group PLC - Pay Discrimination
 ---
 
-
-```{r, setup, echo=FALSE}
+```{r setup, echo=FALSE}
 knitr::opts_chunk$set(
   message = FALSE, 
   warning = FALSE, 
@@ -46,9 +45,9 @@ library(knitr)
 
 At the last board meeting of Omega Group Plc., the headquarters of a large multinational company, the issue was raised that women were being discriminated in the company, in the sense that the salaries were not the same for male and female executives. A quick analysis of a sample of 50 employees (of which 24 men and 26 women) revealed that the average salary for men was about 8,700 higher than for women. This seemed like a considerable difference, so it was decided that a further analysis of the company salaries was warranted.
 
-You are asked to carry out the analysis. The objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor.
+We are asked to carry out the analysis - the objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor.
 
-## Loading the data
+## Import and Inspect
 
 ```{r load_omega_data}
 omega <- read_csv(here::here("data", "omega.csv"))
@@ -57,13 +56,13 @@ glimpse(omega) # examine the data frame
 
 ## Relationship (Salary - Gender)
 
-The data frame `omega` contains the salaries for the sample of 50 executives in the company. **Can you conclude that there is a significant difference between the salaries of the male and female executives?**
+The data frame `omega` contains the salaries for the sample of 50 executives in the company.
 
-We will be performing two analyses - (1) Confidence Intervals and (2) Hypothesis Testing, and see if both lead to the same conclusion.
+We performed two analyses to find out if there is a significant difference between the salaries of the male and female executives - (1) Confidence Intervals and (2) Hypothesis Testing, and see if both lead to the same conclusion.
 
 ### Two Separate Confidence Intervals
 
-```{r, confint_single_variables_salary}
+```{r confint_single_variables_salary}
 # Summary Statistics of salary by gender
 mosaic::favstats (salary ~ gender, data=omega)
 
@@ -83,7 +82,7 @@ formula_ci_salary <- omega %>%
             ) 
 
 formula_ci_salary %>%
- kable()
+ kable() 
 
 ```
 
@@ -110,11 +109,11 @@ ggplot(formula_ci_salary,
 
 To perform a hypothesis testing, we assume the null hypothesis (H~0~) that there is no difference in *mean salary* between men and women (difference is zero), and the alternative Hypothesis (H~a~) that there is a difference in *mean salary* between men and women (difference is non-zero).
 
-We will be performing our hypothesis testing using `t.test()` and with the simulation method from the `infer` package.
+We performed our hypothesis testing using `t.test()` and with the simulation method from the `infer` package.
 
 #### `t.test()`
 
-```{r, hypothesis_testing_ttest_salary}
+```{r hypothesis_testing_ttest_salary}
 
 mosaic::favstats(salary ~ gender, data = omega)
 t.test(salary ~ gender, data = omega)
@@ -125,7 +124,7 @@ t.test(salary ~ gender, data = omega)
 
 #### Simulation Method (`infer` package)
 
-```{r, hypothesis_testing_infer_salary}
+```{r hypothesis_testing_infer_salary}
 
 set.seed(1234)
 
@@ -169,7 +168,7 @@ p_value_salary
 
 ### Conclusion
 
-The results of both analyses, confidence intervals and hypothesis testing, lead to the same conclusion. That is there is a significant difference between the salaries of the male and female executives.
+The results of both analyses, comparing both confidence intervals and hypothesis testing, lead to the same conclusion. That is there is a significant difference between the salaries of the male and female executives.
 
 ## Relationship (Experience - Gender)
 
@@ -181,13 +180,11 @@ favstats (experience ~ gender, data=omega)
 
 ```
 
-**Based on this evidence, can you conclude that there is a significant difference between the experience of the male and female executives?**
-
-We will be performing similar analyses as in the previous section - (1) Confidence Intervals and (2) Hypothesis Testing. Let's see how the conclusion of these analyses validates or endanger our previous conclusion on the difference in male and female salaries.
+Based on this evidence, we performed similar analyses as with the relationship with salary and gender to see if there is a significant difference between the experience of the male and female executives. Let's see how the conclusion of these analyses validates or endanger our previous conclusion on the difference in male and female salaries.
 
 ### Two Separate Confidence Intervals
 
-```{r, confint_single_variables_experience}
+```{r confint_single_variables_experience}
 
 formula_ci_experience <- omega %>% 
   group_by(gender) %>% 
@@ -231,7 +228,7 @@ ggplot(formula_ci_experience,
 
 To perform a hypothesis testing, we assume the null hypothesis (H~0~) that there is no difference in *average experience* between men and women (difference is zero), and the alternative Hypothesis (H~a~) that there is a difference in *average experience* between men and women (difference is non-zero).
 
-We will be performing our hypothesis testing using `t.test()` and with the simulation method from the `infer` package.
+We performed our hypothesis testing using `t.test()` and with the simulation method from the `infer` package.
 
 #### `t.test()`
 
@@ -290,13 +287,13 @@ p_value_experience
 
 ### Conclusion
 
-The results of both analyses, confidence intervals and hypothesis testing, lead to the same conclusion. That is there is a significant difference between the experience of the male and female executives.
+The results of both analyses, comparing both confidence intervals and hypothesis testing, led to the same conclusion. That is there is a significant difference between the experience of the male and female executives.
 
 ## Relationship (Salary - Experience)
 
 Someone at the meeting argues that clearly, a more thorough analysis of the relationship between salary and experience is required before any conclusion can be drawn about whether there is any gender-based salary discrimination in the company.
 
-**Analyse the relationship between salary and experience. Draw a scatter plot to visually inspect the data.**
+Hence, we drew a scatter plot to visually inspect the data and analysed the relationship between salary and experience.
 
 #### Salary vs Experience Scatter Plot
 
@@ -320,7 +317,7 @@ ggplot(omega, aes(x = experience, y = salary)) +
 
 ## Check correlations between the data
 
-Using `GGally:ggpairs()` to create a scatter plot and correlation matrix. Essentially, we change the order of our variables will appear in and have the dependent variable (Y), salary, as last in our list. We then pipe the data frame to `ggpairs()` with `aes` arguments to colour by `gender` and make these plots somewhat transparent (`alpha  = 0.3`).
+We used `GGally:ggpairs()` to create a scatter plot and correlation matrix. Essentially, we change the order of our variables will appear in and have the dependent variable (Y), salary, as last in our list. We then pipe the data frame to `ggpairs()` with `aes` arguments to colour by `gender` and make these plots somewhat transparent (`alpha  = 0.3`).
 
 ```{r, ggpairs}
 omega %>% 
@@ -328,8 +325,6 @@ omega %>%
   ggpairs(aes(colour=gender, alpha = 0.3))+
   theme_bw()
 ```
-
-**Look at the salary vs experience scatter plot. What can you infer from this plot? Explain in a couple of sentences.**
 
 > **Interpretation:** Based on our analysis, there is a positive relationship between salary and experience as the correlation coefficient is close to 1. In other words, as years of experience increases, salary increases. When categorizing the gender into different colors, we can see that more women are on the left side of the graph, indicating lesser years of experience on average. Hence, this is a good indication as of why women has a lower average salary as compared to men.
 
