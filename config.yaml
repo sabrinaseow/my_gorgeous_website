@@ -84,7 +84,7 @@ params:
         subtitle: A little bit about myself
         title: About Me
         url: intro/sabrinaseow
-      - image: brexit.jpeg
+      - image: brexit.jpg
         subtitle: Analysing the results of the 2016 Brexit vote in the UK
         title: Brexit Vote Analysis  
         url: blogs/brexitvote
