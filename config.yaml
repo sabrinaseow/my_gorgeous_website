@@ -11,7 +11,7 @@ params:
       Welcome to my portfolio website! Find out more about me and my latest work. 
     title: Hey, I'm Sabrina.
   blog: {}
-  contact:
+  contact: 
     address:
       - city: London
         country: United Kingdom
@@ -60,7 +60,7 @@ params:
   name: Sabrina Seow
   navigation:
     button1:
-      - name: View All
+      - name: View All Projects
         url: blogs
     # button2:
     #   - name: Log In
@@ -69,9 +69,9 @@ params:
       - name: Home
         url: '#'
       - name: WHO
-        url: blogs/sabrinaseow
-      - name: WORK
-        url: blogs/ipsum
+        url: intro/sabrinaseow
+      # - name: WORK
+      #   url: blogs/ipsum
       # - name: Elements
       #   url: elements.html
     menu: Menu
@@ -114,4 +114,4 @@ params:
     #   Vivamus et sagittis libero.\n    Mauris aliquet magna magna sed nunc rhoncus
     #   amet pharetra et feugiat tempus."
     title: Resume
-    url: https://www.icloud.com/iclouddrive/0OXctWf-HHcEN6Yw0FDsOAvdQ#CV_Sabrina
+    url: https://drive.google.com/file/d/1LvhfOxEF1HpDYS95nR-O2CK5EkdN5Fnw/view?usp=sharing
