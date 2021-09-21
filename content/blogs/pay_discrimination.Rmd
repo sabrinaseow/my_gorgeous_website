@@ -330,4 +330,4 @@ omega %>%
 
 ## Final conclusion
 
-> According to our analysis, there is a positive relationship between salary and experience, and women has lower years of experience than men on average. Hence, the assumption that women were being discriminated in the company in the sense that the salaries were not the same for male and female executives **may not be true**. The substantial difference between male and female salaries is more likely attributable to differences in experience.
+According to our analysis, there is a positive relationship between salary and experience, and women has lower years of experience than men on average. Hence, the assumption that women were being discriminated in the company in the sense that the salaries were not the same for male and female executives **may not be true**. The substantial difference between male and female salaries is more likely attributable to differences in experience.
