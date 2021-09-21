@@ -92,10 +92,10 @@ params:
         subtitle: Is there a difference between the salaries of men and women in Omega Group PLC?
         title: Omega Group PLC - Pay Discrimination
         url: blogs/paydiscrimination
-      # - image: pic04.jpg
-      #   subtitle: Nisl Sed Aliquam
-      #   title: Ipsum
-      #   url: blogs/ipsum
+      - image: movies.jpg
+        subtitle: Analysing a subset sample of movies taken from the Kaggle IMDb 5000 movie dataset
+        title: IMDb Movie Database Analysis
+      #   url: blogs/imdb
       # - image: pic05.jpg
       #   subtitle: Ipsum Dolor Sit Amet
       #   title: Consequat
@@ -114,4 +114,4 @@ params:
     #   Vivamus et sagittis libero.\n    Mauris aliquet magna magna sed nunc rhoncus
     #   amet pharetra et feugiat tempus."
     title: Resume
-    url: https://drive.google.com/file/d/1LvhfOxEF1HpDYS95nR-O2CK5EkdN5Fnw/view?usp=sharing
+    url: https://drive.google.com/file/d/1wzAo4gLfVmZO1KUHNAOCCPCAtuoUH1dp/view?usp=sharing

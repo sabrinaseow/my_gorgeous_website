@@ -6,4 +6,4 @@ slug: blogs
 title: Projects 
 ---
 
-Showcasing projects that I have worked on with **R**. 
+Showcasing projects that I have worked on with **R**

@@ -1,3 +1,3 @@
 # my_website
 
-Hello
+Brief introduction of myself and some of the work that I've done

@@ -1,0 +1,268 @@
+---
+categories:
+- ""
+- ""
+date: "2017-10-31T21:28:43-05:00"
+description: "Analysing a subset sample of movies taken from the Kaggle IMDb 5000 movie dataset"
+draft: false
+image: movies.jpg
+keywords: ""
+slug: imdb
+title: IMDb Movie Database Analysis
+---
+
+```{r, setup, echo=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+options(digits = 3)
+
+# default figure size
+knitr::opts_chunk$set(
+  fig.width=6.75, 
+  fig.height=6.75,
+  fig.align = "center"
+)
+```
+
+```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)  
+library(mosaic)
+library(ggthemes)
+library(ggpubr)
+library(lubridate)
+library(fivethirtyeight)
+library(here)
+library(skimr)
+library(janitor)
+library(vroom)
+library(tidyquant)
+library(rvest) # to scrape wikipedia page
+```
+
+The subset sample of movies is taken from the [Kaggle IMDB 5000 movie dataset](https://www.kaggle.com/carolzhangdc/imdb-5000-movie-dataset)
+
+## Import and Inspect
+
+```{r,load_movies, warning=FALSE, message=FALSE, eval=FALSE}
+
+movies <- read_csv(here::here("data", "movies.csv"))
+glimpse(movies)
+
+```
+
+Besides the obvious variables of `title`, `genre`, `director`, `year`, and `duration`, the rest of the variables are as follows:
+
+-   `gross` : the gross earnings in the US box office, not adjusted for inflation
+-   `budget`: the movie's budget
+-   `cast_facebook_likes`: the number of facebook likes cast members received
+-   `votes`: the number of people who voted for (or rated) the movie in IMDB
+-   `reviews`: the number of reviews for that movie
+-   `rating`: IMDB average rating
+
+### Check for missing values (NAs) and if all entries are distinct
+
+```{r skim_data, warning =FALSE}
+skimr::skim(movies)
+
+```
+
+> There are no missing values as can be observed when analysing `n_missing`. However, there are duplicate values for some variables. What is more likely our concern is that there are duplicate titles, which shouldn't be the case. This can be observed through looking at `n_unique`: even though there are a total of 2961 records, there only seem to be 2907 unique movie titles.
+
+### Number of movies in each genre
+
+```{r count_movies, warning=FALSE}
+
+count_movies_genre <- movies %>% 
+  group_by(genre) %>% 
+  count(sort=TRUE) %>% 
+  rename("number of movies" = n)
+
+count_movies_genre 
+
+```
+
+> There is a significant difference between the genre with the highest number of movies - Comedy, and the genre with the lowest number of movies - Thriller.
+
+### Return on budget - how much \$ did a movie make at the box office for each \$ of its budget
+
+```{r average_gross_earning, warning=FALSE}
+
+library(scales)
+
+genre_returns <- movies %>% 
+  group_by(genre) %>% 
+  summarise(average_gross = mean(gross), 
+            average_budget = mean(budget)) %>% 
+  mutate(return_on_budget = average_gross/average_budget) %>% 
+  mutate(return_on_budget = round(return_on_budget, 2)) %>% 
+  mutate(average_gross = dollar(average_gross), average_budget = dollar(average_budget)) %>% 
+  # The dollar function is from the scales package which allows the numbers to be more readable
+  
+  arrange(desc(return_on_budget))
+
+genre_returns
+
+```
+
+### Top 15 directors who have created the highest gross revenue in the box office
+
+```{r top_15_directors, warning=FALSE}
+
+top_directors <- movies %>% 
+  group_by(director) %>% 
+  summarise(total_gross = sum(gross),
+            avg_gross = mean(gross),
+            median_gross = median(gross),
+            sd_gross = sd(gross)) %>% 
+  slice_max(order_by = total_gross, n = 15) %>% 
+  mutate(total_gross = dollar(total_gross),
+         avg_gross = dollar(avg_gross), 
+         median_gross = dollar(median_gross),
+         sd_gross = dollar(sd_gross))
+
+top_directors 
+  
+```
+
+### Ratings distribution
+
+```{r ratings_by_genre, warning=FALSE}
+
+ratings_by_genre <- movies %>% 
+  group_by(genre) %>% 
+  summarise(avg_rating = mean(rating),
+           min_rating = min(rating),
+           max_rating = max(rating),
+           sd_rating = sd(rating)) %>% 
+  arrange(desc(avg_rating))
+
+ratings_by_genre
+
+# Plotting the graph that shows how ratings are distributed (all genres)
+ggplot(movies, aes(x=rating)) +
+  geom_histogram(color="black", fill = "grey") +
+  geom_vline(aes(xintercept=mean(rating)), color = "darkred", size = 1, linetype = "dashed") +
+  labs(title = "Ratings distribution", 
+       subtitle = "A histogram on overall ratings across genres", 
+       x = "Rating",
+       y = "count") +
+  annotate("text",
+           label = "Mean",
+           color = "darkred", 
+           y = -10, 
+           x = 6.7,
+           size = 5) +
+  theme_bw() 
+  
+# Plotting the graph that shows how ratings are distributed by genre
+ggplot(movies, aes(x=rating)) +
+  geom_histogram(color="black", fill = "grey") +
+  facet_wrap(vars(genre), scales = "free_y") +
+  labs(title = "Ratings distribution by genre", 
+         x = "Rating") +
+  theme_bw()
+```
+
+### The relationship between `gross` and `cast_facebook_likes`
+
+We would like to find out if the number of facebook likes that the casts have received is likely to be a good predictor of how much money a movie will make at the box office.
+
+```{r gross_on_fblikes, warning=FALSE}
+
+ggplot(movies, aes(x=cast_facebook_likes, y=gross)) +
+  geom_point(aes(color=genre)) +
+  geom_smooth(method = "lm") +
+  labs(title = "Casts' Facebook likes and gross revenue",
+       subtitle = "The relationship between casts' Facebook popularity and the movie's gross revenue (Unadjusted)",
+       x = "Casts' likes on facebook",
+       y = "Gross revenue") +
+  stat_regline_equation(label.x = 50000, label.y = 760000000, aes(label = ..eq.label..), size = 5) +
+  stat_regline_equation(label.x = 50000, label.y = 740000000, aes(label = ..rr.label..), size = 5) +
+  scale_x_continuous(labels = number) +
+  scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))+
+  theme_bw()
+```
+
+```{r gross_on_fblikes(adjusted), warning=FALSE }
+
+#Removing outliers to improve visualisation
+
+ggplot(movies, aes(x=cast_facebook_likes, y=gross)) +
+  geom_point(aes(color=genre)) +
+  geom_smooth(method = "lm") +
+  xlim(0, 150000) + #Limiting the display of values on the x and y axes to account for outliers
+  ylim(0,600000000) +
+  labs(title = "Casts' Facebook likes and gross revenue",
+       subtitle = "The relationship between casts' Facebook popularity and the movie's gross revenue (Adjusted)",
+       x = "Casts' likes on facebook",
+       y = "Gross revenue") +
+  stat_regline_equation(label.x = 15000, label.y = 750000000, aes(label = ..eq.label..), size = 3) +
+  stat_regline_equation(label.x = 15000, label.y = 700000000, aes(label = ..rr.label..), size = 3) +
+  scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))+
+  theme_bw()
+```
+
+> From the R^2^ value of 0.081, we can infer that the correlation between the two variables is rather weak. This indicates that the casts' Facebook popularity does not solely help to predict the gross revenue of a movie.
+
+
+### The relationship between `gross` and `budget`
+
+We would like to find out if the budget for the movie is likely to be a good predictor of how much money the movie will make at the box office.
+
+```{r gross_on_budget, warning=FALSE}
+ggplot(movies, aes(x=budget, y=gross)) +
+  geom_point(aes(color=genre)) +
+  geom_smooth(method = "lm") +
+  labs(title = "Movie budget and gross revenue",
+       subtitle = "The relationship between the movie's budget and its' gross revenue",
+       x = "Budget",
+       y = "Gross revenue") +
+  stat_regline_equation(label.y = 700000000, aes(label = ..eq.label..), size = 3) +
+  stat_regline_equation(label.y = 650000000, aes(label = ..rr.label..), size = 3) +
+  scale_x_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))+
+  scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))+
+  theme_bw()
+```
+
+> Budget seems to be a stronger predictor of a movie's gross revenue compared to casts' facebook popularity, as the R^2^ value is closer to 1.
+
+### The relationship between `gross` and `rating`
+
+We would like to find out whether IMDB ratings are likely to be a good predictor of how much money a movie will make at the box office
+```{r gross_on_rating, warning=FALSE}
+
+ggplot(movies, aes(x=rating, y=gross)) +
+  geom_point(aes(color=genre), size=1) +
+  geom_smooth(method = "lm") +
+  scale_x_continuous(labels = number) +
+  scale_y_continuous(labels = dollar) +
+  labs(title = "Movie rating and gross revenue",
+       subtitle = "The relationship between the movie's rating and its' gross revenue",
+       x = "Rating",
+       y = "Gross revenue") +
+  stat_regline_equation(label.y = 700000000, aes(label = ..eq.label..), size = 3) +
+  stat_regline_equation(label.y = 650000000, aes(label = ..rr.label..), size = 3) +
+  scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000)) +
+  theme_bw()
+
+
+# Faceted by genre
+ggplot(movies, aes(x=rating, y=gross)) +
+  geom_point(aes(color=genre), size=0.5) +
+  geom_smooth(method = "lm") +
+  facet_wrap(vars(genre), scale="free_y") +
+  scale_x_continuous(labels = number) +
+  scale_y_continuous(labels = dollar) +
+  labs(title = "Movie rating and gross revenue",
+       subtitle = "The relationship between the movie's rating and its' gross revenue",
+       x = "Rating",
+       y = "Gross revenue") +
+  facet_wrap(vars(genre), scale="free_y") +
+  scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))
+  theme_bw()
+```
+
+> In general, there is a positive correlation between a movie's rating and its gross revenue. However, similar to casts' Facebook likes, the correlation is weak. Other than that, due to the small sample size of some genres (e.g Musical, Western and Sci-Fi), not all trendlines are representative.
