@@ -46,7 +46,7 @@ The subset sample of movies is taken from the [Kaggle IMDB 5000 movie dataset](h
 
 ## Import and Inspect
 
-```{r,load_movies, warning=FALSE, message=FALSE, eval=FALSE}
+```{r,load_movies, warning=FALSE, message=FALSE}
 
 movies <- read_csv(here::here("data", "movies.csv"))
 glimpse(movies)
@@ -153,7 +153,7 @@ ggplot(movies, aes(x=rating)) +
            label = "Mean",
            color = "darkred", 
            y = -10, 
-           x = 6.7,
+           x = 7,
            size = 5) +
   theme_bw() 
   
@@ -179,8 +179,8 @@ ggplot(movies, aes(x=cast_facebook_likes, y=gross)) +
        subtitle = "The relationship between casts' Facebook popularity and the movie's gross revenue (Unadjusted)",
        x = "Casts' likes on facebook",
        y = "Gross revenue") +
-  stat_regline_equation(label.x = 50000, label.y = 760000000, aes(label = ..eq.label..), size = 5) +
-  stat_regline_equation(label.x = 50000, label.y = 740000000, aes(label = ..rr.label..), size = 5) +
+  stat_regline_equation(label.x = 50000, label.y = 760000000, aes(label = ..eq.label..), size = 3) +
+  stat_regline_equation(label.x = 50000, label.y = 730000000, aes(label = ..rr.label..), size = 3) +
   scale_x_continuous(labels = number) +
   scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))+
   theme_bw()
@@ -200,7 +200,7 @@ ggplot(movies, aes(x=cast_facebook_likes, y=gross)) +
        x = "Casts' likes on facebook",
        y = "Gross revenue") +
   stat_regline_equation(label.x = 15000, label.y = 750000000, aes(label = ..eq.label..), size = 3) +
-  stat_regline_equation(label.x = 15000, label.y = 700000000, aes(label = ..rr.label..), size = 3) +
+  stat_regline_equation(label.x = 15000, label.y = 730000000, aes(label = ..rr.label..), size = 3) +
   scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))+
   theme_bw()
 ```
@@ -221,7 +221,7 @@ ggplot(movies, aes(x=budget, y=gross)) +
        x = "Budget",
        y = "Gross revenue") +
   stat_regline_equation(label.y = 700000000, aes(label = ..eq.label..), size = 3) +
-  stat_regline_equation(label.y = 650000000, aes(label = ..rr.label..), size = 3) +
+  stat_regline_equation(label.y = 670000000, aes(label = ..rr.label..), size = 3) +
   scale_x_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))+
   scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))+
   theme_bw()
@@ -232,7 +232,7 @@ ggplot(movies, aes(x=budget, y=gross)) +
 ### The relationship between `gross` and `rating`
 
 We would like to find out whether IMDB ratings are likely to be a good predictor of how much money a movie will make at the box office
-```{r gross_on_rating, warning=FALSE}
+```{r gross_on_rating, warning=FALSE, eval=FALSE}
 
 ggplot(movies, aes(x=rating, y=gross)) +
   geom_point(aes(color=genre), size=1) +
@@ -244,7 +244,7 @@ ggplot(movies, aes(x=rating, y=gross)) +
        x = "Rating",
        y = "Gross revenue") +
   stat_regline_equation(label.y = 700000000, aes(label = ..eq.label..), size = 3) +
-  stat_regline_equation(label.y = 650000000, aes(label = ..rr.label..), size = 3) +
+  stat_regline_equation(label.y = 670000000, aes(label = ..rr.label..), size = 3) +
   scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000)) +
   theme_bw()
 
@@ -261,7 +261,7 @@ ggplot(movies, aes(x=rating, y=gross)) +
        x = "Rating",
        y = "Gross revenue") +
   facet_wrap(vars(genre), scale="free_y") +
-  scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000))
+  scale_y_continuous(labels = dollar_format(prefix = "$", suffix = "m", scale = 1/1000000)) +
   theme_bw()
 ```
 
