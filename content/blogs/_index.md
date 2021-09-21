@@ -1,9 +1,9 @@
 ---
 date: "2017-10-31T22:27:21-05:00"
 draft: false
-image: pic02.jpg
+# image: pic02.jpg
 slug: blogs
 title: Projects 
 ---
 
-Showcasing projects that I have worked on. All of them are in **R**. 
+Showcasing projects that I have worked on with **R**. 
