@@ -88,10 +88,10 @@ params:
         subtitle: Analysing the results of the 2016 Brexit vote in the UK
         title: Brexit Vote Analysis  
         url: blogs/brexitvote
-      # - image: pic03.jpg
-      #   subtitle: Lorem Etiam Nullam
-      #   title: Magna
-      #   url: blogs/magna
+      - image: pay.jpg
+        subtitle: Is there a difference between the salaries of men and women in Omega Group PLC?
+        title: Omega Group PLC - Pay Discrimination
+        url: blogs/paydiscrimination
       # - image: pic04.jpg
       #   subtitle: Nisl Sed Aliquam
       #   title: Ipsum
