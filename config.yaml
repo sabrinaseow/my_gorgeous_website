@@ -68,7 +68,7 @@ params:
     links:
       - name: Home
         url: '#'
-      - name: WHO
+      - name: About Me
         url: intro/sabrinaseow
       # - name: WORK
       #   url: blogs/ipsum
