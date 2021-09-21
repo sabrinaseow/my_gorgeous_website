@@ -83,7 +83,7 @@ params:
       - image: sabs_grad.png 
         subtitle: A little bit about myself
         title: About Me
-        url: blogs/sabrinaseow
+        url: intro/sabrinaseow
       - image: brexit.jpeg
         subtitle: Analysing the results of the 2016 Brexit vote in the UK
         title: Brexit Vote Analysis  
