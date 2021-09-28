@@ -16,7 +16,7 @@ knitr::include_graphics("/img/blogs/sabrina.jpg", error = FALSE)
 
 ```
 
-My name is **Sabrina Seow** and I'm from Kuala Lumpur, Malaysia. Realising data increasingly becomes the beacon for companies navigating their way through an intricate world, resulting in a paradigm shift in the mode of decision making where the locus lies towards information rather than intuition, I decided to be a proponent of this revolution rather than a mere bystander. Observing a glaring gap in my skill set to discern valid conclusions from data, the desire to address it provided my primary motivation to learn analytics. 
+My name is **Sabrina Seow** and I'm from Kuala Lumpur, Malaysia. Realising how data increasingly becomes the beacon for companies navigating their way through an intricate world, resulting in a paradigm shift in the mode of decision making where the locus lies towards information rather than intuition, I decided to be a proponent of this revolution rather than a mere bystander. Observing a glaring gap in my skill set to discern valid conclusions from data, the desire to address it provided my primary motivation to learn analytics. 
 
 I have a degree in Information Technology Management for Business from The University of Manchester, professional experience in Consulting at Ernst & Young, and am currently reading for Masters in Analytics and Management in London Business School. 
 

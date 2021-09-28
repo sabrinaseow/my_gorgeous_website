@@ -77,7 +77,7 @@ brexit_results %>%
 
 The **correlation is almost 0.5**, which shows that the two variables are positively correlated. A scatter plot was also created between these two variables using `geom_point`.
 
-```{r brexit_immigration_plot, eval=FALSE}
+```{r brexit_immigration_plot, warning=FALSE, message=FALSE}
 ggplot(brexit_results, aes(x = born_in_uk, y = leave_share)) +
   geom_point(alpha=0.3) +
   geom_smooth(method = "lm") + 
@@ -96,4 +96,4 @@ ggplot(brexit_results, aes(x = born_in_uk, y = leave_share)) +
 >
 > This is in line with what has been mentioned above - *one common explanation for the Brexit outcome was fear of immigration and opposition to the EU's more open border policy*. Areas with high UK-born populations are usually in the suburbs, which as opposed to urban areas, houses more economically disadvantaged and low skilled communities. I believe these groups were the most likely to support Brexit as they are naturally worried about competition for jobs due to immigration.
 >
-> However, I believe people in urban areas fear competition for jobs as well, but I think what causes this divide in attitude towards immigration is their education levels. I think people who are highly-educated believes and knows that a more open border policy will further expand the economy and create much more job opportunities instead.
+> I believe people in urban areas fear competition for jobs as well, but I think what causes this divide in attitude towards immigration is their education levels. For instance, people who has a higher education level might believe that a more open border policy will further expand the economy and create much more job opportunities instead.
